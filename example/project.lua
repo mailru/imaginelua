@@ -1,20 +1,32 @@
 local imagine = require('imagine')
-local fiber = require('fiber')
 local log = require('log')
 
 
-local function users_create(login)
-    box.space.users:insert({login, fiber.time()})
+local KEY_LIFETIME = 60
+
+local function create(key, ...)
+    box.space.key:insert({key, os.time(), ...})
 end
 
-local function users_list()
-    return box.space.users:select({})
+local function delete(key)
+    box.space.key:delete({key})
+end
+
+local function get(key)
+    return box.space.key:select({key})
 end
 
 
 local function init()
-    box.schema.create_space('users', {if_not_exists = true})
-    box.space.users:create_index('pk', {type = 'hash', parts = {1, 'str'}, if_not_exists = true})
+    box.schema.create_space('key', {if_not_exists = true})
+    box.space.key:create_index('pk', {type = 'hash', parts = {1, 'str'}, if_not_exists = true})
+
+    require('expirationd').run_task(
+        'project_expiration_task',
+        'key',
+        function (args, t) return t[2] + KEY_LIFETIME < os.time() end,
+        function (space, args, t) delete(t[1]) end
+    )
 
     log.info('init ok')
 end
@@ -23,12 +35,19 @@ imagine.init({
     init_func = init,
 
     roles = {
-        backend_role = {
-            table = 'users',
+        client_role = {
+            table = 'key',
             funcs = {
-                create = imagine.atomic(users_create),
-                list   = imagine.atomic(users_list),
+                create = imagine.atomic(create),
+                delete = imagine.atomic(delete),
+                get    = imagine.atomic(get),
             },
         },
+    },
+
+    graphite = {
+        prefix = 'project',
+        ip     = '127.0.0.1',
+        port   = 2003,
     },
 })
