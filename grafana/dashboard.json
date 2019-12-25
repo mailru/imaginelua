@@ -114,14 +114,14 @@
           "hide": false,
           "refCount": 0,
           "refId": "D",
-          "target": "alias(groupByNode(removeBelowValue(swa.tnt.$type.$host.$instance.error_rps_max, 1), 5, 'sum'), 'errors')",
+          "target": "alias(groupByNode(removeBelowValue(__PROJECT__.tnt.$type.$host.$instance.error_rps_max, 1), 5, 'sum'), 'errors')",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": 0,
           "refId": "B",
-          "target": "aliasSub(groupByNode(removeBelowValue(swa.tnt.$type.$host.$instance.*warn*, 1), 6, 'sum'), '^([a-zA-Z0-9_]+).*$', '\\1')",
+          "target": "aliasSub(groupByNode(removeBelowValue(__PROJECT__.tnt.$type.$host.$instance.*warn*, 1), 6, 'sum'), '^([a-zA-Z0-9_]+).*$', '\\1')",
           "textEditor": false
         }
       ],
@@ -224,7 +224,7 @@
         {
           "hide": false,
           "refId": "D",
-          "target": "aliasSub(highestMax(swa.tnt.$type.$host.$instance.arena_used, 1), '.*_([^_]+).*', '\\1')",
+          "target": "aliasSub(highestMax(__PROJECT__.tnt.$type.$host.$instance.arena_used, 1), '.*_([^_]+).*', '\\1')",
           "textEditor": false
         }
       ],
@@ -334,42 +334,42 @@
           "hide": true,
           "refCount": 0,
           "refId": "D",
-          "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+          "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "alias(keepLastValue(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 100), 'quota size')",
+          "target": "alias(keepLastValue(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 100), 'quota size')",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(keepLastValue(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 100), 'quota used')",
+          "target": "alias(keepLastValue(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 100), 'quota used')",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "C",
-          "target": "alias(keepLastValue(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 100), 'arena size')",
+          "target": "alias(keepLastValue(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 100), 'arena size')",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "E",
-          "target": "alias(keepLastValue(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 100), 'arena used')",
+          "target": "alias(keepLastValue(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 100), 'arena used')",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "F",
-          "target": "alias(keepLastValue(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 100), 'lua heap')",
+          "target": "alias(keepLastValue(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 100), 'lua heap')",
           "textEditor": false
         }
       ],
@@ -484,20 +484,20 @@
           "hide": true,
           "refCount": -1,
           "refId": "A",
-          "target": "lowestCurrent(swa.tnt.$type.$host.$instance.quota_size, 1)",
+          "target": "lowestCurrent(__PROJECT__.tnt.$type.$host.$instance.quota_size, 1)",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": -1,
           "refId": "B",
-          "target": "swa.tnt.$type.$host.$instance.arena_size"
+          "target": "__PROJECT__.tnt.$type.$host.$instance.arena_size"
         },
         {
           "refCount": 0,
           "refId": "C",
           "target": "highestCurrent(divideSeries(#B, #A), 1)",
-          "targetFull": "highestCurrent(divideSeries(swa.tnt.$type.$host.$instance.arena_size, lowestCurrent(swa.tnt.$type.$host.$instance.quota_size, 1)), 1)"
+          "targetFull": "highestCurrent(divideSeries(__PROJECT__.tnt.$type.$host.$instance.arena_size, lowestCurrent(__PROJECT__.tnt.$type.$host.$instance.quota_size, 1)), 1)"
         }
       ],
       "thresholds": "0.6,0.8",
@@ -579,20 +579,20 @@
           "hide": true,
           "refCount": -1,
           "refId": "A",
-          "target": "sumSeries(swa.tnt.$type.$host.$instance.quota_size)",
+          "target": "sumSeries(__PROJECT__.tnt.$type.$host.$instance.quota_size)",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": -1,
           "refId": "B",
-          "target": "sumSeries(swa.tnt.$type.$host.$instance.arena_used)"
+          "target": "sumSeries(__PROJECT__.tnt.$type.$host.$instance.arena_used)"
         },
         {
           "refCount": 0,
           "refId": "C",
           "target": "divideSeries(#B, #A)",
-          "targetFull": "divideSeries(sumSeries(swa.tnt.$type.$host.$instance.arena_used), sumSeries(swa.tnt.$type.$host.$instance.quota_size))"
+          "targetFull": "divideSeries(sumSeries(__PROJECT__.tnt.$type.$host.$instance.arena_used), sumSeries(__PROJECT__.tnt.$type.$host.$instance.quota_size))"
         }
       ],
       "thresholds": "0.6,0.8",
@@ -684,14 +684,14 @@
           "hide": true,
           "refCount": 0,
           "refId": "C",
-          "target": "sumSeries(sumSeries(timeShift(swa.tnt.$type.$host.$instance.arena_used, '1h')),scale(sumSeries(timeShift(swa.tnt.$type.$host.$instance.arena_used, '2d')), -1))",
+          "target": "sumSeries(sumSeries(timeShift(__PROJECT__.tnt.$type.$host.$instance.arena_used, '1h')),scale(sumSeries(timeShift(__PROJECT__.tnt.$type.$host.$instance.arena_used, '2d')), -1))",
           "textEditor": true
         },
         {
           "hide": true,
           "refCount": 0,
           "refId": "D",
-          "target": "scale(sumSeries(swa.tnt.$type.$host.$instance.quota_size,scale(sumSeries(swa.tnt.$type.$host.$instance.arena_used),-1.05)),2)",
+          "target": "scale(sumSeries(__PROJECT__.tnt.$type.$host.$instance.quota_size,scale(sumSeries(__PROJECT__.tnt.$type.$host.$instance.arena_used),-1.05)),2)",
           "textEditor": true
         },
         {
@@ -699,7 +699,7 @@
           "refCount": -1,
           "refId": "E",
           "target": "movingAverage(divideSeries(#D,#C),100)",
-          "targetFull": "movingAverage(divideSeries(scale(sumSeries(swa.tnt.$type.$host.$instance.quota_size,scale(sumSeries(swa.tnt.$type.$host.$instance.arena_used),-1.05)),2),sumSeries(sumSeries(timeShift(swa.tnt.$type.$host.$instance.arena_used, '1h')),scale(sumSeries(timeShift(swa.tnt.$type.$host.$instance.arena_used, '2d')), -1))),100)",
+          "targetFull": "movingAverage(divideSeries(scale(sumSeries(__PROJECT__.tnt.$type.$host.$instance.quota_size,scale(sumSeries(__PROJECT__.tnt.$type.$host.$instance.arena_used),-1.05)),2),sumSeries(sumSeries(timeShift(__PROJECT__.tnt.$type.$host.$instance.arena_used, '1h')),scale(sumSeries(timeShift(__PROJECT__.tnt.$type.$host.$instance.arena_used, '2d')), -1))),100)",
           "textEditor": true
         },
         {
@@ -707,7 +707,7 @@
           "refCount": 0,
           "refId": "A",
           "target": "sumSeries(scale(diffSeries(absolute(#E), #E),1),#E)",
-          "targetFull": "sumSeries(scale(diffSeries(absolute(movingAverage(divideSeries(scale(sumSeries(swa.tnt.$type.$host.$instance.quota_size,scale(sumSeries(swa.tnt.$type.$host.$instance.arena_used),-1.05)),2),sumSeries(sumSeries(timeShift(swa.tnt.$type.$host.$instance.arena_used, '1h')),scale(sumSeries(timeShift(swa.tnt.$type.$host.$instance.arena_used, '2d')), -1))),100)), #E),1),#E)",
+          "targetFull": "sumSeries(scale(diffSeries(absolute(movingAverage(divideSeries(scale(sumSeries(__PROJECT__.tnt.$type.$host.$instance.quota_size,scale(sumSeries(__PROJECT__.tnt.$type.$host.$instance.arena_used),-1.05)),2),sumSeries(sumSeries(timeShift(__PROJECT__.tnt.$type.$host.$instance.arena_used, '1h')),scale(sumSeries(timeShift(__PROJECT__.tnt.$type.$host.$instance.arena_used, '2d')), -1))),100)), #E),1),#E)",
           "textEditor": true
         }
       ],
@@ -787,7 +787,7 @@
           "hide": false,
           "refCount": -1,
           "refId": "A",
-          "target": "keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.replication_idle), 10)",
+          "target": "keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.replication_idle), 10)",
           "textEditor": false
         }
       ],
@@ -903,14 +903,14 @@
           "hide": true,
           "refCount": -1,
           "refId": "A",
-          "target": "keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)",
+          "target": "keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": -1,
           "refId": "B",
-          "target": "keepLastValue(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)",
+          "target": "keepLastValue(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)",
           "textEditor": false
         },
         {
@@ -918,7 +918,7 @@
           "refCount": 0,
           "refId": "C",
           "target": "absolute(diffSeries(#B, #A))",
-          "targetFull": "absolute(diffSeries(keepLastValue(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100), keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)))"
+          "targetFull": "absolute(diffSeries(keepLastValue(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100), keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)))"
         }
       ],
       "thresholds": "0,1",
@@ -1021,14 +1021,14 @@
           "hide": true,
           "refCount": -1,
           "refId": "A",
-          "target": "keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)",
+          "target": "keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": -1,
           "refId": "B",
-          "target": "keepLastValue(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)",
+          "target": "keepLastValue(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)",
           "textEditor": false
         },
         {
@@ -1036,7 +1036,7 @@
           "refCount": 0,
           "refId": "C",
           "target": "absolute(diffSeries(#B, #A))",
-          "targetFull": "absolute(diffSeries(keepLastValue(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100), keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)))"
+          "targetFull": "absolute(diffSeries(keepLastValue(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100), keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)))"
         }
       ],
       "thresholds": "0,1",
@@ -1139,14 +1139,14 @@
           "hide": true,
           "refCount": -1,
           "refId": "A",
-          "target": "keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)",
+          "target": "keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": -1,
           "refId": "B",
-          "target": "keepLastValue(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)",
+          "target": "keepLastValue(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)",
           "textEditor": false
         },
         {
@@ -1154,7 +1154,7 @@
           "refCount": 0,
           "refId": "C",
           "target": "absolute(diffSeries(#B, #A))",
-          "targetFull": "absolute(diffSeries(keepLastValue(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100), keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)))"
+          "targetFull": "absolute(diffSeries(keepLastValue(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100), keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)))"
         }
       ],
       "thresholds": "0,1",
@@ -1257,14 +1257,14 @@
           "hide": true,
           "refCount": -1,
           "refId": "A",
-          "target": "keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)",
+          "target": "keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": -1,
           "refId": "B",
-          "target": "keepLastValue(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)",
+          "target": "keepLastValue(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)",
           "textEditor": false
         },
         {
@@ -1272,7 +1272,7 @@
           "refCount": 0,
           "refId": "C",
           "target": "absolute(diffSeries(#B, #A))",
-          "targetFull": "absolute(diffSeries(keepLastValue(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100), keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)))"
+          "targetFull": "absolute(diffSeries(keepLastValue(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100), keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)))"
         }
       ],
       "thresholds": "0,1",
@@ -1375,14 +1375,14 @@
           "hide": true,
           "refCount": -1,
           "refId": "A",
-          "target": "keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)",
+          "target": "keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": -1,
           "refId": "B",
-          "target": "keepLastValue(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)",
+          "target": "keepLastValue(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)",
           "textEditor": false
         },
         {
@@ -1390,7 +1390,7 @@
           "refCount": 0,
           "refId": "C",
           "target": "absolute(diffSeries(#B, #A))",
-          "targetFull": "absolute(diffSeries(keepLastValue(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100), keepLastValue(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 100)))"
+          "targetFull": "absolute(diffSeries(keepLastValue(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100), keepLastValue(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 100)))"
         }
       ],
       "thresholds": "0,1",
@@ -1471,7 +1471,7 @@
             {
               "hide": false,
               "refId": "A",
-              "target": "aliasSub(maximumAbove(groupByNode(consolidateBy(swa.tnt.$type.$host.$instance.imagine.funcs.*_rpm, 'max'), 7, 'sumSeries'), 0), '(.*)_rpm.*', '\\1')",
+              "target": "aliasSub(maximumAbove(groupByNode(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.imagine.funcs.*_rpm, 'max'), 7, 'sumSeries'), 0), '(.*)_rpm.*', '\\1')",
               "textEditor": false
             }
           ],
@@ -1573,7 +1573,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "aliasSub(maximumAbove(groupByNode(consolidateBy(exclude(swa.tnt.$type.$host.$instance.imagine.funcs.*, '.*_rpm.*'), 'max'), 7, 'maxSeries'), 0), '(.*),.*', '\\1')",
+              "target": "aliasSub(maximumAbove(groupByNode(consolidateBy(exclude(__PROJECT__.tnt.$type.$host.$instance.imagine.funcs.*, '.*_rpm.*'), 'max'), 7, 'maxSeries'), 0), '(.*),.*', '\\1')",
               "textEditor": true
             }
           ],
@@ -1688,42 +1688,42 @@
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "aliasSub(consolidateBy(groupByNode(swa.tnt.$type.$host.$instance.*_rps_avg, 5, 'sum'), 'max'), '.*\\((.*)_rps_avg.*', '\\1')",
+              "target": "aliasSub(consolidateBy(groupByNode(__PROJECT__.tnt.$type.$host.$instance.*_rps_avg, 5, 'sum'), 'max'), '.*\\((.*)_rps_avg.*', '\\1')",
               "textEditor": false
             },
             {
               "hide": true,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(sumSeries(consolidateBy(swa.tnt.$type.$host.$instance.insert_rps_avg, 'max')), 'Insert')",
+              "target": "alias(sumSeries(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.insert_rps_avg, 'max')), 'Insert')",
               "textEditor": false
             },
             {
               "hide": true,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(sumSeries(consolidateBy(swa.tnt.$type.$host.$instance.update_rps_avg, 'max')), 'Update')",
+              "target": "alias(sumSeries(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.update_rps_avg, 'max')), 'Update')",
               "textEditor": false
             },
             {
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "alias(sumSeries(consolidateBy(swa.tnt.$type.$host.$instance.upsert_rps_avg, 'max')), 'Upsert')",
+              "target": "alias(sumSeries(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.upsert_rps_avg, 'max')), 'Upsert')",
               "textEditor": false
             },
             {
               "hide": true,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(sumSeries(consolidateBy(swa.tnt.$type.$host.$instance.replace_rps_avg, 'max')), 'Replace')",
+              "target": "alias(sumSeries(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.replace_rps_avg, 'max')), 'Replace')",
               "textEditor": false
             },
             {
               "hide": true,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(sumSeries(consolidateBy(swa.tnt.$type.$host.$instance.delete_rps_avg, 'max')), 'Delete')",
+              "target": "alias(sumSeries(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.delete_rps_avg, 'max')), 'Delete')",
               "textEditor": false
             }
           ],
@@ -1823,42 +1823,42 @@
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "aliasSub(consolidateBy(groupByNode(swa.tnt.$type.$host.$instance.*_rps_max, 5, 'sum'), 'max'), '.*\\((.*)_rps_max.*', '\\1')",
+              "target": "aliasSub(consolidateBy(groupByNode(__PROJECT__.tnt.$type.$host.$instance.*_rps_max, 5, 'sum'), 'max'), '.*\\((.*)_rps_max.*', '\\1')",
               "textEditor": false
             },
             {
               "hide": true,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(sumSeries(consolidateBy(swa.tnt.$type.$host.$instance.insert_rps_avg, 'max')), 'Insert')",
+              "target": "alias(sumSeries(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.insert_rps_avg, 'max')), 'Insert')",
               "textEditor": false
             },
             {
               "hide": true,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(sumSeries(consolidateBy(swa.tnt.$type.$host.$instance.update_rps_avg, 'max')), 'Update')",
+              "target": "alias(sumSeries(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.update_rps_avg, 'max')), 'Update')",
               "textEditor": false
             },
             {
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "alias(sumSeries(consolidateBy(swa.tnt.$type.$host.$instance.upsert_rps_avg, 'max')), 'Upsert')",
+              "target": "alias(sumSeries(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.upsert_rps_avg, 'max')), 'Upsert')",
               "textEditor": false
             },
             {
               "hide": true,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(sumSeries(consolidateBy(swa.tnt.$type.$host.$instance.replace_rps_avg, 'max')), 'Replace')",
+              "target": "alias(sumSeries(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.replace_rps_avg, 'max')), 'Replace')",
               "textEditor": false
             },
             {
               "hide": true,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(sumSeries(consolidateBy(swa.tnt.$type.$host.$instance.delete_rps_avg, 'max')), 'Delete')",
+              "target": "alias(sumSeries(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.delete_rps_avg, 'max')), 'Delete')",
               "textEditor": false
             }
           ],
@@ -1975,7 +1975,7 @@
             {
               "hide": false,
               "refId": "A",
-              "target": "aliasByMetric(maximumAbove(aliasSub(groupByNode(consolidateBy(swa.tnt.$type.$host.$instance.imagine.expd.*_rpm, 'max'), 7, 'maxSeries'), '(.*)_rpm.*', '\\1'), 0))",
+              "target": "aliasByMetric(maximumAbove(aliasSub(groupByNode(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.imagine.expd.*_rpm, 'max'), 7, 'maxSeries'), '(.*)_rpm.*', '\\1'), 0))",
               "textEditor": true
             }
           ],
@@ -2077,7 +2077,7 @@
           "targets": [
             {
               "refId": "A",
-              "target": "aliasSub(maximumAbove(groupByNode(consolidateBy(exclude(swa.tnt.$type.$host.$instance.imagine.expd.*, '.*_rpm.*'), 'max'), 7, 'maxSeries'), 0), '(.*),.*', '\\1')",
+              "target": "aliasSub(maximumAbove(groupByNode(consolidateBy(exclude(__PROJECT__.tnt.$type.$host.$instance.imagine.expd.*, '.*_rpm.*'), 'max'), 7, 'maxSeries'), 0), '(.*),.*', '\\1')",
               "textEditor": true
             }
           ],
@@ -2224,42 +2224,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -2378,42 +2378,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -2532,42 +2532,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -2686,42 +2686,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -2840,42 +2840,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -2994,42 +2994,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -3163,42 +3163,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -3317,42 +3317,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -3471,42 +3471,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -3625,42 +3625,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -3779,42 +3779,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -3933,42 +3933,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -4087,42 +4087,42 @@
               "hide": true,
               "refCount": 0,
               "refId": "D",
-              "target": "groupByNode(aliasSub(exclude(swa.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
+              "target": "groupByNode(aliasSub(exclude(__PROJECT__.tnt.$type.$host.$instance.quota_*, 'ratio'), '.*_([^_]+).*', '\\1'), 0, 'sum')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "B",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_size, 0, 'sum'), 'quota size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "A",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.quota_used, 0, 'sum'), 'quota used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "C",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_size, 0, 'sum'), 'arena size')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "E",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.arena_used, 0, 'sum'), 'arena used')",
               "textEditor": false
             },
             {
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.mem.lua_interp_sz, 0, 'sum'), 'lua heap')",
               "textEditor": false
             }
           ],
@@ -4263,7 +4263,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -4374,7 +4374,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -4485,7 +4485,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -4596,7 +4596,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -4707,7 +4707,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -4818,7 +4818,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'sum'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -4944,7 +4944,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -5055,7 +5055,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -5166,7 +5166,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -5277,7 +5277,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -5388,7 +5388,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -5499,7 +5499,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -5610,7 +5610,7 @@
               "hide": false,
               "refCount": 0,
               "refId": "F",
-              "target": "alias(groupByNode(swa.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
+              "target": "alias(groupByNode(__PROJECT__.tnt.$type.$host.$instance.cpu_usage, 0, 'maxSeries'), 'CPU usage')",
               "textEditor": false
             }
           ],
@@ -5728,13 +5728,13 @@
             {
               "hide": false,
               "refId": "A",
-              "target": "alias(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
+              "target": "alias(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
               "textEditor": true
             },
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
+              "target": "alias(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
               "textEditor": true
             }
           ],
@@ -5839,13 +5839,13 @@
             {
               "hide": false,
               "refId": "A",
-              "target": "alias(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
+              "target": "alias(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
               "textEditor": true
             },
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
+              "target": "alias(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
               "textEditor": true
             }
           ],
@@ -5950,13 +5950,13 @@
             {
               "hide": false,
               "refId": "A",
-              "target": "alias(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
+              "target": "alias(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
               "textEditor": true
             },
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
+              "target": "alias(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
               "textEditor": true
             }
           ],
@@ -6061,13 +6061,13 @@
             {
               "hide": false,
               "refId": "A",
-              "target": "alias(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
+              "target": "alias(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
               "textEditor": true
             },
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
+              "target": "alias(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
               "textEditor": true
             }
           ],
@@ -6172,13 +6172,13 @@
             {
               "hide": false,
               "refId": "A",
-              "target": "alias(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
+              "target": "alias(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
               "textEditor": true
             },
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
+              "target": "alias(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
               "textEditor": true
             }
           ],
@@ -6283,13 +6283,13 @@
             {
               "hide": false,
               "refId": "A",
-              "target": "alias(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
+              "target": "alias(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
               "textEditor": true
             },
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
+              "target": "alias(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
               "textEditor": true
             }
           ],
@@ -6394,13 +6394,13 @@
             {
               "hide": false,
               "refId": "A",
-              "target": "alias(maxSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
+              "target": "alias(maxSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'max')",
               "textEditor": true
             },
             {
               "hide": false,
               "refId": "B",
-              "target": "alias(minSeries(swa.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
+              "target": "alias(minSeries(__PROJECT__.tnt.$type.$host.$instance.imagine.files.$file), 'min')",
               "textEditor": true
             }
           ],
@@ -6516,7 +6516,7 @@
             {
               "hide": false,
               "refId": "A",
-              "target": "aliasSub(maximumAbove(aliasByMetric(groupByNode(consolidateBy(swa.tnt.$type.$host.$instance.imagine.fiber.*, 'max'), 7, 'sumSeries')), 0), '(.*),.*', '\\1')",
+              "target": "aliasSub(maximumAbove(aliasByMetric(groupByNode(consolidateBy(__PROJECT__.tnt.$type.$host.$instance.imagine.fiber.*, 'max'), 7, 'sumSeries')), 0), '(.*),.*', '\\1')",
               "textEditor": false
             }
           ],
@@ -6632,7 +6632,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -6746,7 +6746,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -6862,7 +6862,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -6978,7 +6978,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -7094,7 +7094,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -7210,7 +7210,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -7326,7 +7326,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -7442,7 +7442,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -7558,7 +7558,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.$space, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -7688,7 +7688,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -7803,7 +7803,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -7918,7 +7918,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -8033,7 +8033,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -8163,7 +8163,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -8278,7 +8278,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -8393,7 +8393,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -8508,7 +8508,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -8623,7 +8623,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -8738,7 +8738,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -8853,7 +8853,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -8968,7 +8968,7 @@
             {
               "hide": false,
               "refId": "B",
-              "target": "groupByNode(swa.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
+              "target": "groupByNode(__PROJECT__.tnt.$type.$host.$instance.imagine.space.*, 7, 'sum')",
               "textEditor": false
             }
           ],
@@ -9060,7 +9060,7 @@
         "multi": false,
         "name": "type",
         "options": [],
-        "query": "swa.tnt.*",
+        "query": "__PROJECT__.tnt.*",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -9085,7 +9085,7 @@
         "multi": true,
         "name": "host",
         "options": [],
-        "query": "swa.tnt.$type.*",
+        "query": "__PROJECT__.tnt.$type.*",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -9110,7 +9110,7 @@
         "multi": true,
         "name": "instance",
         "options": [],
-        "query": "swa.tnt.$type.$host.*",
+        "query": "__PROJECT__.tnt.$type.$host.*",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -9135,7 +9135,7 @@
         "multi": true,
         "name": "file",
         "options": [],
-        "query": "swa.tnt.$type.$host.$instance.imagine.files.*",
+        "query": "__PROJECT__.tnt.$type.$host.$instance.imagine.files.*",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -9206,7 +9206,7 @@
             "value": "totem_tokens"
           }
         ],
-        "query": "swa.tnt.$type.$host.$instance.imagine.space.*",
+        "query": "__PROJECT__.tnt.$type.$host.$instance.imagine.space.*",
         "refresh": 0,
         "regex": "",
         "skipUrlSync": false,
@@ -9243,7 +9243,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "swa_tnt",
+  "title": "__PROJECT___tnt",
   "uid": "000001423",
   "version": 182
 }
