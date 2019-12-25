@@ -1,21 +1,23 @@
 #!/bin/bash
-set -e -o pipefail
+set -e -u -o pipefail
+IFS=$'\n\t'
 
 
-name=$1
-if [[ ! "$name" =~ ^[a-z]+$ ]]; then
-    echo 'USAGE: ./make.sh PROJECT_NAME' >&2
+if [[ $# -ge 1 && "$1" =~ ^[-_a-z0-9]+$ ]]; then
+    name="$1"
+else
+    echo "USAGE: $(basename $0) PROJECT_NAME" >&2
     exit 1
 fi
 
 
 mkdir -p dist
 
-for f in lua/imagine.lua grafana/dashboard.json; do
+for f in "lua/imagine.lua" "grafana/dashboard.json"; do
     sed "s/__PROJECT__/$name/" $f > dist/$(basename $f)
 done
 
-for f in lua/expirationd.lua lua/graphite.lua; do
+for f in "lua/expirationd.lua" "lua/graphite.lua"; do
     cp $f dist/$(basename $f)
 done
 
@@ -61,5 +63,5 @@ imagine.init({
 })
 EOF
 
-echo 'Done. Saved to dist/'
+echo 'Done. Saved to dist/' $'\n'
 ls -al dist/
