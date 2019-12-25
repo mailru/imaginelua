@@ -10,7 +10,7 @@ Tarantool framework.
 
 To create ready to go version of imagine.lua and Grafana dashboard run:
 ```sh
-make own
+./make.sh PROJECT_NAME
 ```
 
 ## Example

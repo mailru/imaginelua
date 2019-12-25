@@ -516,15 +516,25 @@ local function init(options, do_re_require)
     options.name = options.name or guess_caller():match('(.+)%.lua$')
 
     do
-        local prefix = string.format('swa.tnt.%s.%s.%s.', options.name,
+        local config_graphite = config.graphite
+        if options.graphite then
+            if type(options.graphite) ~= 'table' then
+                log.error("imagine: 'options.graphite' is not a table")
+                return
+            end
+            config_graphite = extend_deep({}, config_graphite)
+            config_graphite = extend_deep(config_graphite, options.graphite)
+        end
+
+        local prefix = string.format('%s.tnt.%s.%s.%s.',
+                                     config_graphite.prefix,
+                                     options.name,
                                      get_hostname():gsub('%..*', '.'),
                                      box.cfg.custom_proc_title)
-        if config.graphite.prefix then
-            prefix = prefix .. '.' .. box.cfg.custom_proc_title .. '.'
-        elseif config.graphite.raw_prefix then
-            prefix = config.graphite.raw_prefix
+        if config_graphite.raw_prefix then
+            prefix = config_graphite.raw_prefix
         end
-        graphite.init(prefix, config.graphite.ip, config.graphite.port)
+        graphite.init(prefix, config_graphite.ip, config_graphite.port)
     end
 
     -- XXX: options.init_func will be called only on master
@@ -574,8 +584,9 @@ return (function ()
     config = {}
     config.stat = {}
     config.graphite = {
-        ip   = '127.0.0.1',
-        port = 2003,
+        prefix = '__PROJECT__',
+        ip     = '127.0.0.1',
+        port   = 2003,
     }
     extend_deep(config, rawget(_G, 'imagine_default_config') or {})
     extend_deep(config, read_config('imagine.conf.yaml'))
